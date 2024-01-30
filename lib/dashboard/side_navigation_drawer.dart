@@ -46,6 +46,7 @@ class _SideNavigationDrawerState extends State<SideNavigationDrawer> {
     return AdminScaffold(
       backgroundColor: Color.fromRGBO(255, 255, 255, 1),
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Colors.pinkAccent.shade700,
         title: Text(
           'Admin Web Panel',
@@ -88,6 +89,7 @@ class _SideNavigationDrawerState extends State<SideNavigationDrawer> {
           width: double.infinity,
           color: Colors.pink.shade500,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(Icons.admin_panel_settings_outlined,color: Colors.white,),
               SizedBox(width: 10,),
