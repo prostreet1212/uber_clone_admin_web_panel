@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CommonMethods{
-
+class CommonMethods {
   Widget header(int headerFlexValue, String headerTitle) {
     return Expanded(
         flex: headerFlexValue,
@@ -20,4 +19,16 @@ class CommonMethods{
         ));
   }
 
+  Widget data(int dataFlexValue, Widget widget) {
+    return Expanded(
+      flex: dataFlexValue,
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey),
+        ),
+        child: Padding(padding: EdgeInsets.all(10),
+            child: widget),
+      ),
+    );
+  }
 }

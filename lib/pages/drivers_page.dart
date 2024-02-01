@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uber_clone_admin_web_panel/methods/common_methods.dart';
+import 'package:uber_clone_admin_web_panel/widgets/drivers_data_list.dart';
 
 class DriversPage extends StatefulWidget {
   static const String id = '\webPageDrivers';
@@ -44,6 +45,7 @@ class _DriversPageState extends State<DriversPage> {
                 ],
               ),
               //display data
+              DriversDataList(),
             ],
           ),
         ),
