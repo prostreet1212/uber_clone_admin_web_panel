@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uber_clone_admin_web_panel/widgets/trips_data_list.dart';
 
 import '../methods/common_methods.dart';
 
@@ -43,6 +44,7 @@ class _TripsPageState extends State<TripsPage> {
                 ],
               ),
               //display data
+              TripsDataList(),
             ],
           ),
         ),

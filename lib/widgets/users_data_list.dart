@@ -66,8 +66,15 @@ class _UsersDataListState extends State<UsersDataList> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        onPressed: (){
-
+                        onPressed: ()async{
+                          await FirebaseDatabase.instance.ref()
+                              .child('users')
+                              .child(itemList[index]['id'])
+                              .update(
+                              {
+                                'blockStatus': 'yes'
+                              }
+                          );
                         },
                       )
                           :ElevatedButton(
@@ -77,8 +84,15 @@ class _UsersDataListState extends State<UsersDataList> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        onPressed: (){
-
+                        onPressed: ()async{
+                          await FirebaseDatabase.instance.ref()
+                              .child('users')
+                              .child(itemList[index]['id'])
+                              .update(
+                              {
+                                'blockStatus': 'no'
+                              }
+                          );
                         },
                       ),),
 

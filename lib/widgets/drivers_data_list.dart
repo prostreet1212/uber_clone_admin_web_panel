@@ -11,7 +11,7 @@ class DriversDataList extends StatefulWidget {
 
 class _DriversDataListState extends State<DriversDataList> {
   final driversRecordsFromDataBase =
-      FirebaseDatabase.instance.ref().child('drivers');
+  FirebaseDatabase.instance.ref().child('drivers');
   CommonMethods cMethods = CommonMethods();
 
   @override
@@ -51,42 +51,62 @@ class _DriversDataListState extends State<DriversDataList> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     cMethods.data(2, Text(itemList[index]['id'].toString())),
-                    cMethods.data(1, Image.network(itemList[index]['photo'].toString(),
-                    height: 50,width: 50,)),
+                    cMethods.data(
+                        1, Image.network(itemList[index]['photo'].toString(),
+                      height: 50, width: 50,)),
                     cMethods.data(1, Text(itemList[index]['name'].toString())),
-                    cMethods.data(1, Text(itemList[index]['car_details']['carModel'].toString()+' - '+
-                        itemList[index]['car_details']['carNumber'].toString())),
+                    cMethods.data(1, Text(
+                        itemList[index]['car_details']['carModel'].toString() +
+                            ' - ' +
+                            itemList[index]['car_details']['carNumber']
+                                .toString())),
                     cMethods.data(1, Text(itemList[index]['phone'].toString())),
                     cMethods.data(1,
-                itemList[index]['earnings']!=null?
-                        Text('\$ '+itemList[index]['earnings'].toString()):Text('\$ 0')),
+                        itemList[index]['earnings'] != null
+                            ?
+                        Text('\$ ' + itemList[index]['earnings'].toString())
+                            : Text('\$ 0')),
                     cMethods.data(1,
-                itemList[index]['blockStatus']=='no'?
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.pink.shade500,
-                          ),
-                      child: Text('Block',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                      itemList[index]['blockStatus'] == 'no' ?
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.pink.shade500,
                         ),
-                      ),
-                        onPressed: (){
-
+                        child: Text('Block',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onPressed: () async {
+                          await FirebaseDatabase.instance.ref()
+                              .child('drivers')
+                              .child(itemList[index]['id'])
+                              .update(
+                            {
+                              'blockStatus': 'yes'
+                            }
+                          );
                         },
-                        )
-                        :ElevatedButton(
-                  child: Text('Approve',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  onPressed: (){
-
-                  },
-                ),),
+                      )
+                          : ElevatedButton(
+                        child: Text('Approve',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onPressed: () async{
+                          await FirebaseDatabase.instance.ref()
+                              .child('drivers')
+                              .child(itemList[index]['id'])
+                              .update(
+                              {
+                                'blockStatus': 'no'
+                              }
+                          );
+                        },
+                      ),),
 
 
                   ],
