@@ -1,4 +1,5 @@
 # uber_clone_admin_web_panel
+## запускать командой: flutter run -d chrome --web-renderer html
 
 admin panel
 
